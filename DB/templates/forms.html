@@ -1,0 +1,32 @@
+<div class="container">
+    <h2>Registration Form</h2>
+    {% for field, errors in form.errors.items() %}
+    {{ ', '.join(errors) }}
+    {% endfor %}
+    <form class="form-horizontal" method="POST" action="">
+        {{ form.csrf_token() }}
+        <div class="form-group">
+            {{ form.username.label }}
+            {{ form.username(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.email.label }}
+            {{ form.email(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.password.label }}
+            {{ form.password(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.confirm_password.label }}
+            {{ form.confirm_password(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.receive_emails.label }}
+            {{ form.receive_emails }}
+        </div>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-primary")}}
+        </div>
+    </form>
+</div>
