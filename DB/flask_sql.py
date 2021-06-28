@@ -25,13 +25,21 @@ class Students(db.Model):
 def show_all():
    return render_template('show_all.html', students = Students.query.all() )
 
+@app.route('/show')
+def show_one():
+   return render_template('show_data.html')
 
+@app.route('/show_names',methods = ['GET', 'POST'])
+def search_one():
+   if request.method == 'POST':
+      if request.form['f_name']=='':
+         flash('Please enter a value', 'error')
+      else:   
+         names = request.form['f_name']     
+         flash('Record was successfully found')
+         return render_template('show_data.html', students = Students.query.filter_by(name=names.lower()).all() )
 
-@app.route('/show/<names>')
-def show_one(names):
-   print(names)
-   print(Students.query.filter_by(name=names).all())
-   return render_template('show_data.html', students = Students.query.filter_by(name=names.lower()).all() )
+   return render_template('show_data.html')
 
 
 

@@ -9,15 +9,25 @@
       </h3>
       
       <hr/>
+      <form action = "{{ url_for('search_one') }}" method = "POST">
+        <label for = "name">Name</label><br>
+        <input type = "text" name = "f_name" placeholder = "Name" /><br>
+        <input type = "submit" value = "Submit" />
+     </form>
       
       <table>
          <thead>
+            {% for student in students 
+                if student
+                %}
             <tr>
                <th>Name</th>
                <th>City</th>
                <th>Address</th>
                <th>Pin</th>
             </tr>
+            {%  
+                endfor %}
          </thead>
          
          <tbody>
